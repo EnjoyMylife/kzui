@@ -15,8 +15,7 @@
       </span>    
       <transition
       name="el-zoom-in-top"
-      @before-enter="handleMenuEnter"
-      @after-leave="doDestroy">
+     >
       <div v-show="!fold" class="kz-droplist-wrap" :style="'width:'+warpWidth">
         <div  class="popper__arrow" style="left: 35px;"></div>
         <div ref="droplist" class="kz-droplist" >
