@@ -35,3 +35,17 @@
     1.end   当组件失去焦点时候被触发
     2.keydown    当keydown时触发
     3.v-model  输入框要绑定的值   
+
+3.顶部与侧边导航栏
+    <kz-aside  @isload="loaded"  :test="test" :fold="fold" :current-position="currentPosition" @left-change="leftChange" :toggle="toggle"></kz-aside>
+    <kz-head   @tab-change="tabChange" @changecompont="changecompont" @changestyle="changestyle" :enterprise-list="enterpriseList" :fault-com="faultCom" :nav-list="navList" :current-position="currentPosition"></kz-head>
+组件：kz-aside
+    1.侧边导航栏
+    2.currentPosition 侧边栏当前停留位置
+    3.leftChange 点击侧边栏某一栏目时触发
+
+组件：kz-head
+    1.navList 顶部导航栏数据选项
+    2.enterpriseList 顶部登录账号数据
+    3.currentPosition 当前停留位置
+    4.tabChange 点击tab栏切换时触发

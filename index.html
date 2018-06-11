@@ -35,31 +35,37 @@
     }
   </style>
   <div id="app" class="demopage">
-    <el-table border :data="list" size="mini">
-      <el-table-column align="center" label="多项下拉" width="180">
-        <template slot-scope="scope">
-          <kz-editable-fuzzy fitcount="2" @end="handlerEnd" :match="serchFilter" :set-val="setVal" @keydown="handlerKeydown" :options="options"
-            v-model="selVal2" :data="serchList">
-            <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
-          </kz-editable-fuzzy>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="单项下拉" width="180">
-        <template slot-scope="scope">
-          <kz-editable-fuzzy @end="handlerEnd" @keydown="handlerKeydown" v-model="selVal1" :data="listtest">
-            <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
-          </kz-editable-fuzzy>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="姓名" width="180">
-        <template slot-scope="scope">
-          <kz-editable-input @end="handlerEnd" @keydown="handlerKeydown" v-model="selVal1"></kz-editable-input>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="cc" label="地址">
-      </el-table-column>
-    </el-table>
-    <input id="myfile" type="button" @click="list.push({})" value="点击" />
+      <kz-frame @tab-change="tabChange" @changecompont="changecompont" @changestyle="changestyle" :fault-com="iid"  test="true"  :enterprise-list="enterpriseList"  :nav-list="navList" :current-position="currentPosition">
+          <kz-frame-warp title="栏目名称">
+              <div style="width:500px;margin:50px auto;">
+                  <el-table border :data="list" size="mini">
+                      <el-table-column align="center" label="多项下拉" width="180">
+                        <template slot-scope="scope">
+                          <kz-editable-fuzzy fitcount="2" @end="handlerEnd" :match="serchFilter" :set-val="setVal" @keydown="handlerKeydown" :options="options"
+                            v-model="selVal2" :data="serchList">
+                            <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
+                          </kz-editable-fuzzy>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="单项下拉" width="180">
+                        <template slot-scope="scope">
+                          <kz-editable-fuzzy @end="handlerEnd" @keydown="handlerKeydown" v-model="selVal1" :data="listtest">
+                            <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
+                          </kz-editable-fuzzy>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="姓名" width="180">
+                        <template slot-scope="scope">
+                          <kz-editable-input @end="handlerEnd" @keydown="handlerKeydown" v-model="selVal1"></kz-editable-input>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" prop="cc" label="地址">
+                      </el-table-column>
+                    </el-table>
+                    <input id="myfile" type="button" @click="list.push({})" value="点击" />
+              </div>
+          </kz-frame-warp>
+        </kz-frame>
 
 
   </div>
@@ -71,6 +77,10 @@
       name: 'test',
       data() {
         return {
+          enterpriseList:[{"id":150,"enterpriseName":"测试1 ","enterpriseNum":"E00000000000515"},{"id":151,"enterpriseName":"测试2","enterpriseNum":"E000000000005125"}],
+          iid:151,
+          navList:[{name:'menu',content:'采购',notice:true},{name:'trade',content:'销售',notice:false},{name:'store',content:'仓库',notice:true},{name:'money',content:'资金',notice:true},{name:'material',content:'资料',notice:true},{name:'set',content:'设置',notice:true}],
+          currentPosition:0,
           selVal1: 1,
           selVal2: "壳牌",
           listtest: ["aabc", "cbaaa", "ssssss", "sdsd"],
@@ -134,6 +144,15 @@
         },
         setVal(item) {
           return item.name;
+        },
+        changecompont:function(i){
+          console.log(i)
+        },
+        changestyle:function(i){
+          console.log(i)
+        },
+        tabChange(index){
+          this.currentPosition=index;
         }
       }
     };
