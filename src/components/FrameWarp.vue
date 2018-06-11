@@ -1,12 +1,12 @@
 <template>
-<div class="lqb-content-warp" >
-	<section class="lqb-content-header">
+<div class="kz-content-warp" >
+	<section class="kz-content-header">
 		<h1>
 			{{title}}
 		</h1>
         <slot name="header"></slot>
 	</section>
-	<section class="lqb-content">
+	<section class="kz-content">
 		<slot></slot>
 	</section>
 </div>
@@ -19,22 +19,22 @@ export default {
 };
 </script>
 <style >
-.lqb-content-warp {
+.kz-content-warp {
   margin-left: 0px;
   min-height: 396px;
   background-color: #ecf0f5;
   padding-bottom: 15px;
 }
-.lqb-content-header > h1 {
+.kz-content-header > h1 {
   font-size: 16px;
   font-family: "微软雅黑";
 }
-.lqb-content-header {
+.kz-content-header {
   position: relative;
   padding: 15px 15px 0 15px;
 }
 
-.lqb-content {
+.kz-content {
   position: relative;
   border-radius: 3px;
   background: #ffffff;
