@@ -1,9 +1,9 @@
 <template>
 <div>
-  <div class="lqbui-layout">
+  <div class="kz-layout">
       <kz-aside  @isload="loaded"  :test="test" :fold="fold" :current-position="currentPosition" @left-change="leftChange" :toggle="toggle"></kz-aside>
       <kz-head   @tab-change="tabChange" @changecompont="changecompont" @changestyle="changestyle" :enterprise-list="enterpriseList" :fault-com="faultCom" :nav-list="navList" :current-position="currentPosition"></kz-head>
-        <div class="lqbui-content" :style="'left:'+left+'px'">
+        <div class="kz-content" :style="'left:'+left+'px'">
             <slot></slot>
         </div>   
   </div>
@@ -86,7 +86,7 @@ export default {
   height: 0;
   clear: both;
 }
-.lqbui-content {
+.kz-content {
   /* margin-left: 160px;
   margin-top: 50px; */
   position: absolute;
