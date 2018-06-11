@@ -23,14 +23,14 @@ module.exports = {
 		 */
 		onSearch: {
 			type: Function,
-			default: function(search, loading){}
+			default: function (search, loading) { }
 		}
 	},
 
 	data() {
 		return {
-      mutableLoading: false
-    }
+			mutableLoading: false
+		}
 	},
 
 	watch: {
@@ -41,14 +41,14 @@ module.exports = {
 		search() {
 			if (this.search.length > 0) {
 				this.onSearch(this.search, this.toggleLoading)
-        this.$emit('search', this.search, this.toggleLoading)
-      }
+				this.$emit('search', this.search, this.toggleLoading)
+			}
 		},
-    /**
-		 * Sync the loading prop with the internal
-		 * mutable loading value.
-     * @param val
-     */
+		/**
+			 * Sync the loading prop with the internal
+			 * mutable loading value.
+		 * @param val
+		 */
 		loading(val) {
 			this.mutableLoading = val
 		}
