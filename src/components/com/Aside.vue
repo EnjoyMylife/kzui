@@ -1,5 +1,5 @@
 <style scoped>
-.lqbui-side {
+.kz-side {
   position: fixed;
   top: 50px;
   bottom: 0;
@@ -7,16 +7,16 @@
   width: 180px;
   overflow-x: hidden;
 }
-.lqbui-bg-black {
+.kz-bg-black {
   background-color: #393d49 !important;
 }
-.lqbui-side-scroll {
+.kz-side-scroll {
   width: 180px;
   height: 100%;
   overflow-x: hidden;
 }
-.lqbui-nav-toggle,
-.lqbui-nav-tree {
+.kz-nav-toggle,
+.kz-nav-tree {
   position: relative;
   background-color: #393d49;
   color: #fff;
@@ -26,13 +26,13 @@
   width: 180px;
   padding: 0;
 }
-.lqbui-nav-toggle {
+.kz-nav-toggle {
   text-align: center;
   height: 25px;
   line-height: 25px;
   background-color: #565a65;
 }
-.lqbui-nav-tree * {
+.kz-nav-tree * {
   font-size: 14px;
   text-decoration: none;
   transition: all 0.3s;
@@ -41,7 +41,7 @@
   -o-transition: all 0.3s; /* Opera */
 }
 
-.lqbui-nav-item {
+.kz-nav-item {
   line-height: 40px;
   display: block;
   width: 100%;
@@ -51,7 +51,7 @@
   margin-bottom: 1px;
 }
 
-.lqbui-nav-tree .lqbui-nav-item a {
+.kz-nav-tree .kz-nav-item a {
   height: 40px;
   line-height: 40px;
   text-overflow: ellipsis;
@@ -63,10 +63,10 @@
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
 }
-.lqbui-nav-tree .lqbui-nav-child a {
+.kz-nav-tree .kz-nav-child a {
   padding-left: 20px;
 }
-.lqbui-nav-child {
+.kz-nav-child {
   left: 0;
   top: 65px;
   min-width: 100%;
@@ -82,54 +82,54 @@
   border: none;
   box-shadow: none;
 }
-.lqbui-nav-title {
+.kz-nav-title {
   display: block;
   background-color: #2b2e37;
   cursor: pointer;
 }
-.lqbui-nav-title:hover {
+.kz-nav-title:hover {
   background: rgba(177, 178, 179, 0.1);
 }
-.lqbui-nav-tree .lqbui-nav-child {
+.kz-nav-tree .kz-nav-child {
   margin: 0;
 }
-.lqbui-nav-tree .lqbui-nav-child a {
+.kz-nav-tree .kz-nav-child a {
   height: 40px;
   line-height: 40px;
   color: #fff;
   color: rgba(255, 255, 255, 0.7);
 }
-.lqbui-nav-tree .lqbui-nav-child a:hover {
+.kz-nav-tree .kz-nav-child a:hover {
   color: #ffffff;
 }
-.lqbui-nav-icon {
+.kz-nav-icon {
   position: absolute;
   right: 10px;
   top: 0px;
 }
-.lqbui-nav-item i.lqbui-nav-icon {
+.kz-nav-item i.kz-nav-icon {
   left: 20px;
 }
-.lqbui-nav-child i.lqbui-nav-icon {
+.kz-nav-child i.kz-nav-icon {
   position: static;
 }
-.lqbui-nav-toggle .lqbui-nav-icon {
+.kz-nav-toggle .kz-nav-icon {
   right: 45%;
   top: auto;
 }
 </style>
 <template>
-  <div class="lqbui-side lqbui-bg-black"> 
-   <div class="lqbui-side-scroll"> 
-    <div class="lqbui-nav-toggle" :style="toggle?'width:50px':'width:180px'" @click='leftMove()'><span class="lqbui-nav-icon icon iconfont icon-xiangxiajiantou"></span></div>
-    <ul class="lqbui-nav-tree"> 
-     <li :key="index" v-for="(item,index) in position[currentPosition]" class="lqbui-nav-item"> 
-            <span @click='toggleFold(index)' class="lqbui-nav-title"><i :class="'lqbui-nav-icon icon iconfont '+item.icon"></i>
-            <a :style="(locPath==item.path.replace(' ',''))?'color: #72feff':''"  :href="item.path">{{item.name}}</a><span v-if="item.child.length" :class="'lqbui-nav-icon icon iconfont '+(item.fold?'icon-shangjiantou':'icon-xiajiantou')"></span>
+  <div class="kz-side kz-bg-black"> 
+   <div class="kz-side-scroll"> 
+    <div class="kz-nav-toggle" :style="toggle?'width:50px':'width:180px'" @click='leftMove()'><span class="kz-nav-icon icon iconfont icon-xiangxiajiantou"></span></div>
+    <ul class="kz-nav-tree"> 
+     <li :key="index" v-for="(item,index) in position[currentPosition]" class="kz-nav-item"> 
+            <span @click='toggleFold(index)' class="kz-nav-title"><i :class="'kz-nav-icon icon iconfont '+item.icon"></i>
+            <a :style="(locPath==item.path.replace(' ',''))?'color: #72feff':''"  :href="item.path">{{item.name}}</a><span v-if="item.child.length" :class="'kz-nav-icon icon iconfont '+(item.fold?'icon-shangjiantou':'icon-xiajiantou')"></span>
             </span> 
-            <dl v-show="item.fold" v-if="item.child.length" class="lqbui-nav-child"> 
+            <dl v-show="item.fold" v-if="item.child.length" class="kz-nav-child"> 
             <dd :key="index1" v-for="(item1,index1) in item.child" @click="contentChange(currentPosition,index1)" :style="tabStyle[currentPosition][index1]">
-                <a :style="(locPath==item1.path.replace(' ',''))?((item.fold=true)&&'color: #72feff'):''" :href="item1.path"><i :class="'lqbui-nav-icon icon iconfont '+item1.icon"  ></i> {{item1.name}}<span v-show="item1.notice" style="border: 4px solid red;border-radius:4px;position: absolute;z-index: 1000;margin-top: 4%;"></span></a> 
+                <a :style="(locPath==item1.path.replace(' ',''))?((item.fold=true)&&'color: #72feff'):''" :href="item1.path"><i :class="'kz-nav-icon icon iconfont '+item1.icon"  ></i> {{item1.name}}<span v-show="item1.notice" style="border: 4px solid red;border-radius:4px;position: absolute;z-index: 1000;margin-top: 4%;"></span></a> 
             </dd>  
             </dl> 
       </li> 

@@ -1,9 +1,9 @@
 <style scoped>
-.lqbui-main-header * {
+.kz-main-header * {
   list-style: none;
   font-size: 14px;
 }
-.lqbui-main-header {
+.kz-main-header {
   background-color: #0d9ecf;
   height: 50px;
   box-shadow: 12px 3px 5px rgba(1, 1, 1, 0.2);
@@ -13,17 +13,17 @@
   top: 0px;
 }
 
-.lqbui-logo {
+.kz-logo {
   display: block;
   float: left;
   padding: 12px 20px;
   background-color: #0d9ecf;
 }
-.lqbui-nav-list {
+.kz-nav-list {
   float: left;
   position: relative;
 }
-.lqbui-nav-list a {
+.kz-nav-list a {
   color: #ffffff;
   display: block;
   height: 50px;
@@ -32,17 +32,17 @@
   cursor: pointer;
   text-decoration: none;
 }
-.lqbui-nav-list a span {
+.kz-nav-list a span {
   padding: 0 0 0 5px;
 }
-.lqbui-nav-list a cite {
+.kz-nav-list a cite {
   border: 4px solid red;
   border-radius: 4px;
   position: absolute;
   z-index: 1000;
   margin-top: 15%;
 }
-.lqbui-nav-list .bottomLine::after {
+.kz-nav-list .bottomLine::after {
   content: "";
   bottom: 0;
   position: absolute;
@@ -52,28 +52,28 @@
   height: 5px;
   background-color: #0087b4;
 }
-.lqbui-logo .lqbui-logo-lg img {
+.kz-logo .kz-logo-lg img {
   vertical-align: middle;
 }
-.lqbui-navbar-custom-menu {
+.kz-navbar-custom-menu {
   float: right;
 }
 
-.lqbui-nav li {
+.kz-nav li {
   float: right;
 }
-.lqbui-user-menu{
+.kz-user-menu{
   position: relative;
 }
-.lqbui-nav li.training{
+.kz-nav li.training{
   color: #fff;
   margin-right: 10px;
 }
-.lqbui-nav li a{
+.kz-nav li a{
   text-decoration: none;
   cursor: pointer;
 }
-.lqbui-user-menu a {
+.kz-user-menu a {
   color: #333;
   line-height: 20px;
   cursor: pointer;
@@ -81,17 +81,17 @@
   display: block;
   text-decoration: none;
 }
-.lqbui-user-menu a.loginout{
+.kz-user-menu a.loginout{
   color: #fff;
 }
-.lqbui-user-menu .icon-write {
+.kz-user-menu .icon-write {
   color: #fff;
 }
-.lqbui-user-menu em{
+.kz-user-menu em{
   list-style: none;
   font-style: normal;
 }
-.lqbui-user-menu .layui-nav-child {
+.kz-user-menu .layui-nav-child {
     /* display: none; */
     position: absolute;
     left: 0;
@@ -101,10 +101,10 @@
     padding: 5px 0;
     min-width: 100%;
 }
-.lqbui-user-menu .layui-nav-child dd{
+.kz-user-menu .layui-nav-child dd{
     background-color: #fff;
 }
-.lqbui-user-image {
+.kz-user-image {
   float: left;
   width: 25px;
   height: 25px;
@@ -114,31 +114,31 @@
 }
 </style>
 <template>
-  <header class="lqbui-main-header">
-            <a href="/" class="lqbui-logo">
-                <span class="lqbui-logo-lg">
+  <header class="kz-main-header">
+            <a href="/" class="kz-logo">
+                <span class="kz-logo-lg">
                     <img src="http://dgj2test.kzmall.cc/statics/images/dgjlogo.png?ver=1523585724" title="logo">
                 </span>
             </a>
-            <li :key="index" v-for="(item,index) in navList" class="lqbui-nav-list" :style="navListStyle[index]" :value="item" @click='setListItem(index)' @mouseover='hover(index)' @mouseleave='leave(index)'><a :class="flag[index]=='true' ?'bottomLine':''"><i :class="'lqbui-nav-icon icon iconfont '+icon[index]"></i><span>{{item.content}}</span><cite v-show="item.notice"></cite></a></li>
-            <div class="lqbui-navbar-custom-menu">
-                  <ul class="lqbui-nav lqbui-navbar-nav">
-                      <li class="lqbui-user-menu" @mouseover="loginOver"  @mouseout="loginOut">
+            <li :key="index" v-for="(item,index) in navList" class="kz-nav-list" :style="navListStyle[index]" :value="item" @click='setListItem(index)' @mouseover='hover(index)' @mouseleave='leave(index)'><a :class="flag[index]=='true' ?'bottomLine':''"><i :class="'kz-nav-icon icon iconfont '+icon[index]"></i><span>{{item.content}}</span><cite v-show="item.notice"></cite></a></li>
+            <div class="kz-navbar-custom-menu">
+                  <ul class="kz-nav kz-navbar-nav">
+                      <li class="kz-user-menu" @mouseover="loginOver"  @mouseout="loginOut">
                           <a @click="loginout" class="loginout" :style="topStyle">
-                              <img src="http://dgj2test.kzmall.cc/statics/images/0.jpg?ver=1524558995" class="lqbui-user-image" alt="User Image" style="margin-right:20px;">
+                              <img src="http://dgj2test.kzmall.cc/statics/images/0.jpg?ver=1524558995" class="kz-user-image" alt="User Image" style="margin-right:20px;">
                               <span class="hidden-xs" style="margin-right:10px;">浙江金华服务站</span>
-                              <span class="lqbui-nav-icon icon iconfont icon-xiajiantou icon-write"></span>
+                              <span class="kz-nav-icon icon iconfont icon-xiajiantou icon-write"></span>
                           </a>
                           <dl class="layui-nav-child layui-anim layui-anim-upbit" :style="dlStyle" @mouseover="loginOver" @mouseout="loginOut">
                             <dd :style="stationStyle" @mouseleave="stationOut" @mouseenter="stationOver">
 						                  <a href="javascript:void(0);" id="message" rel="pageTab" tabid="message" right="MES_QUERY">
-							                  <i class="lqbui-nav-icon icon iconfont icon-shezhi" aria-hidden="true"></i>
+							                  <i class="kz-nav-icon icon iconfont icon-shezhi" aria-hidden="true"></i>
                                 <em>站内信</em><span class="messageNum" style="display: none;"></span>
 						                  </a>
 					                  </dd>
 					                  <dd  :style="exitStyle" @mouseleave="exitOut" @mouseenter="exitOver">
 						                  <a href="javascript:;" id="signOut" @click="loginout">
-							                  <i class="lqbui-nav-icon icon iconfont icon-shezhi" aria-hidden="true"></i>
+							                  <i class="kz-nav-icon icon iconfont icon-shezhi" aria-hidden="true"></i>
 							                  <em>退出系统</em>
 						                  </a>
 					                  </dd>
@@ -149,7 +149,7 @@
                                 <option  :key="index"  v-for="(item, index) in enterpriseList" :value="item.id ">{{item.enterpriseName}}</option>
                             </select> -->
                           <a>
-                              <span class="lqbui-nav-icon icon iconfont icon-shezhi icon-write"></span>
+                              <span class="kz-nav-icon icon iconfont icon-shezhi icon-write"></span>
                               <span class="hidden-xs" style="margin-right:10px;">培训专栏</span>
                           </a>
                         </li>
