@@ -128,7 +128,7 @@
             <a :style="(locPath==item.path.replace(' ',''))?'color: #72feff':''"  :href="item.path">{{item.name}}</a><span v-if="item.child.length" :class="'kz-nav-icon icon iconfont '+(item.fold?'icon-shangjiantou':'icon-xiajiantou')"></span>
             </span> 
             <dl v-show="item.fold" v-if="item.child.length" class="kz-nav-child"> 
-            <dd :key="index1" v-for="(item1,index1) in item.child" @click="contentChange(currentPosition,index1)" :style="tabStyle[currentPosition][index1]">
+            <dd :key="index1" v-for="(item1,index1) in item.child" @click="contentChange(currentPosition,index1,item1.id,item1.name)" :style="tabStyle[currentPosition][index1]">
                 <a :style="(locPath==item1.path.replace(' ',''))?((item.fold=true)&&'color: #72feff'):''" :href="item1.path"><i :class="'kz-nav-icon icon iconfont '+item1.icon"  ></i> {{item1.name}}<span v-show="item1.notice" style="border: 4px solid red;border-radius:4px;position: absolute;z-index: 1000;margin-top: 4%;"></span></a> 
             </dd>  
             </dl> 
@@ -147,7 +147,7 @@ let ajax = require("ajax");
   (window.systemId = "");
 export default {
   name:'kz-aside',
-  props: ["test", "fold", "currentPosition","toggle"],
+  props: ["test", "fold", "currentPosition","toggle","tabData","tabIndex"],
   data() {
     return {
       position: {
@@ -663,12 +663,29 @@ export default {
     toggleFold(i) {
       this.position[this.currentPosition][i].fold = !this.position[this.currentPosition][i].fold;
     },
-    contentChange(currentPosition, i) {
+    contentChange(currentPosition, i,tabId,tabTitle) {
       this.tabStyle = { 0: [], 1: [] ,2: [],3:[],4:[],5:[]};
       Vue.set(this.tabStyle[currentPosition], i, {
         "background-color": "#ff5d6e"
       });
       // console.log(this.tabStyle[currentPosition][i])
+      //tab栏联动
+      console.log(this.tabData);
+      var flag = false;
+      this.tabData.forEach(item => {
+        if (item.name == tabId) {
+          flag = true;
+          return true;
+        }
+      });
+      if (!flag) {
+        this.tabData.push({
+          title: tabTitle,
+          name: tabId
+        });
+      }
+      this.tabIndex = tabId;
+      return this.tabData;
     },
     leftMove(){
         var leftMsg={

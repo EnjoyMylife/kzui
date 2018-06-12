@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="kz-layout">
-      <kz-aside  @isload="loaded"  :test="test" :fold="fold" :current-position="currentPosition" @left-change="leftChange" :toggle="toggle"></kz-aside>
+      <kz-aside  @isload="loaded"  :test="test" :fold="fold" :current-position="currentPosition" :current-tab="currentTab" :tab-data="tabData" :tab-index="tabIndex" @left-change="leftChange" :toggle="toggle"></kz-aside>
       <kz-head   @tab-change="tabChange" @changecompont="changecompont" @changestyle="changestyle" :enterprise-list="enterpriseList" :fault-com="faultCom" :nav-list="navList" :current-position="currentPosition"></kz-head>
         <div class="kz-content" :style="'left:'+left+'px'">
             <slot></slot>
@@ -34,7 +34,7 @@ export default {
       toggle:false
     };
   },
-  props: ["test", "fold", "enterpriseList", "faultCom","navList","currentPosition"],
+  props: ["test", "fold", "enterpriseList", "faultCom","navList","currentPosition","tabData","tabIndex","currentTab"],
   components: {
     "kz-aside": Aside,
     "kz-head": Head
@@ -62,7 +62,7 @@ export default {
     },
     tabChange(index){
         console.log(index);
-        this.$emit('tab-change', index)
+        this.$emit('tab-change', index);
     },
     leftChange(leftMsg){
       console.log(leftMsg);
