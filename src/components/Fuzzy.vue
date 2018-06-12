@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import Clickoutside from "../utils/clickoutside";
-import scrollIntoView from "../utils/scroll-into-view";
+import Clickoutside from "../lib/clickoutside";
+import scrollIntoView from "../lib/scroll-into-view";
 export default {
   name: "kz-fuzzy",
   data() {

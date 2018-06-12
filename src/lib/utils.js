@@ -87,58 +87,6 @@ export const valueEquals = (a, b) => {
 
 
 export default {
-    trim (string) {
-        return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
-      }
-    ,
-    getQueryString(name) {//获取浏览器参数
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", i); // 匹配目标参数
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
-        if (result != null) {
-          return decodeURIComponent(result[2]);
-        } else {
-          return null;
-        }
-    },
-    //日期类
-    format(date, format) {//日期格式化
-        if (!format) {
-            format = 'yyyy-MM-dd';//默认1997-01-01这样的格式
-        }
-        var o = {
-            "M+": date.getMonth() + 1, //month
-            "d+": date.getDate(), //day
-            "h+": date.getHours(), //hour
-            "m+": date.getMinutes(), //minute
-            "s+": date.getSeconds(), //second
-            "q+": Math.floor((date.getMonth() + 3) / 3), //quarter
-            "S": date.getMilliseconds() //millisecond
-        }
-
-        if (/(y+)/.test(format)) {
-            format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-        }
-
-        for (var k in o) {
-            if (new RegExp("(" + k + ")").test(format)) {
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
-            }
-        }
-        return format;
-    },
-    addMonths(date,m) {//增加月
-        var d = this.getDate();
-        this.setMonth(this.getMonth() + m);
-        if (this.getDate() < d)
-            this.setDate(0);
-    }, 
-    addDays(date,d) {//增加天
-        this.setDate(this.getDate() + d);
-    },
-    queryMonthDay() {
-        let data = new Date();
-        return [data.getFullYear() + "-" + (data.getMonth() > 9 ? "" : "0") + (data.getMonth() + 1) + "-" + '01', data.getFullYear() + "-" + (data.getMonth() >= 9 ? "" : "0") + (data.getMonth() + 1) + "-" + (data.getDate() > 9 ? "" : "0") + data.getDate()];
-    },
     //本地数据处理类
     getItem(k) {//获取localStorage或cookie里面的数据 优先获取localStorage
         if (window && window.localStorage && window.localStorage[k]) {
