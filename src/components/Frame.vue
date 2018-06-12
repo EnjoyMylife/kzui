@@ -87,12 +87,17 @@ export default {
   clear: both;
 }
 .kz-content {
-  /* margin-left: 160px;
-  margin-top: 50px; */
   position: absolute;
-  /* left: 160px; */
+  border-radius: 3px;
   top: 50px;
+  bottom: 0;
+  right: 0;
   z-index: 666;
-  width: 100%;
+  width: auto;
+  background: #ffffff;
+  border-top: 3px solid #d2d6de;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  margin-top:0;
 }
 </style>
