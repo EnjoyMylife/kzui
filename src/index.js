@@ -6,7 +6,7 @@ import Frame from '@/components/Frame';
 import FrameWarp from '@/components/FrameWarp';
 import Aside from '@/components/com/Aside';
 import Head from '@/components/com/Head';
-
+import * as validate from "@/lib/validate"
 
 let kzui = { Card,Fuzzy,EditableFuzzy,EditableInput,Frame,FrameWarp,Aside,Head }
 const install = () => {
