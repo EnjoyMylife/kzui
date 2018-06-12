@@ -7,7 +7,8 @@
       :label="item.title"
       :name="item.name"
     >
-      {{item.content}}
+      <!-- {{item.content}} -->
+      <slot></slot>
     </kz-tab-panel>
   </kz-tabs>
   <div >
@@ -24,15 +25,15 @@
       switch tab2
     </el-button>
   </div>
-	<section class="kz-content-header">
+	<!-- <section class="kz-content-header">
 		<h1>
 			{{title}}
 		</h1>
-    <!-- <slot name="header"></slot> -->
-	</section>
-	<section class="kz-tab1-content">
+    <slot name="header"></slot>
+	</section> -->
+	<!-- <section class="kz-tab1-content">
 		<slot></slot>
-	</section>
+	</section> -->
 </div>
 </template>
 
@@ -81,7 +82,6 @@ export default {
 .kz-content-warp {
   margin-left: 0px;
   min-height: 396px;
-  background-color: #ecf0f5;
   padding-bottom: 15px;
 }
 .kz-content-header > h1 {
@@ -94,7 +94,4 @@ export default {
   background-color: #fff;
 }
 
-.kz-tab1-content {
-  background: #ffffff;
-}
 </style>
