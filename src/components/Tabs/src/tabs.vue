@@ -82,7 +82,7 @@ export default {
     return (
       <div class='kz-tabs'>
         { header }
-        <div class='kz-tabs__content'>{this.$slots.default}</div>
+        <div class='kz-tabs__content' >{this.$slots.default}</div>
       </div>
     )
   },
@@ -96,5 +96,9 @@ export default {
 </script>
 
 <style scoped>
-
+.kz-tabs__content{
+  background-color: #fff;
+  margin-top: 15px;
+  margin-left:15px;
+}
 </style>

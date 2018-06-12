@@ -94,10 +94,11 @@ export default {
   right: 0;
   z-index: 666;
   width: auto;
-  background: #ffffff;
+  background: #ecf0f5;
   border-top: 3px solid #d2d6de;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   margin: 15px;
   margin-top:0;
+  margin-left: 1px;
 }
 </style>

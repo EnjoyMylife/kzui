@@ -54,7 +54,7 @@ export default {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    background-color: #f0f0f0;
+    background-color: #fff;
     margin-left: -1px;
     height: 29px;
     line-height: 29px;
@@ -71,5 +71,8 @@ export default {
   .kz-tab__item .icon-close {
     position: absolute;
     right: 4px;
+  }
+  .kz-tab__nav{
+    background-color: #fff;
   }
 </style>
