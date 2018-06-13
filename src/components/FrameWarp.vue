@@ -74,6 +74,7 @@ export default {
       handleSwitch(tabindex) {
         console.log(tabindex)
         this.tabIndex = tabindex.toString()
+        console.log(this.currentTab)
       }
   }
 };
