@@ -2,40 +2,40 @@
 
 export const validateTel = (rule, value, callback) => {
     if (value && !/^1\d{10}$/.test(value)) {
-      callback(new Error("请输入正确的手机号码"));
+      callback&&callback(new Error("请输入正确的手机号码"));
     } else {
-      callback();
+      callback&&callback();
     }
   };
 
   export const validateID = (rule, value, callback) => {
     if (!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value)) {
-      callback(new Error("请输入正确的身份证号码"));
+      callback&&callback(new Error("请输入正确的身份证号码"));
     } else {
-      callback();
+      callback&&callback();
     }
   };
   export const  validateBankNo = (rule, value, callback) => {
     if (!/^([1-9]{1})(\d{14}|\d{18})$/.test(value)) {
-      callback(new Error("请输入正确银行卡号"));
+      callback&&callback(new Error("请输入正确银行卡号"));
     } else {
-      callback();
+      callback&&callback();
     }
   };
 
   export const  validateNumber = (rule, value, callback) => {
     if (value<0) {
-      callback(new Error("输入的数字不能是负数"));
+      callback&&callback(new Error("输入的数字不能是负数"));
     } else {
-      callback();
+      callback&&callback();
     }
   };
 
   export const  validateFloat = (rule, value, callback) => {
     if (value!= parseFloat(parseFloat(value).toFixed(2))) {
-      callback(new Error("小数点最多保存后两位"));
+      callback&&callback(new Error("小数点最多保存后两位"));
     } else {
-      callback();
+      callback&&callback();
     }
   };
   
