@@ -35,7 +35,7 @@
     }
   </style>
   <div id="app" class="demopage">
-      <kz-frame @tab-change="tabChange" :tab-data="tabData" :tab-index="tabIndex" :current-tab="currentTab" @changecompont="changecompont" @changestyle="changestyle" :fault-com="iid"  test="true"  :enterprise-list="enterpriseList"  :nav-list="navList" :current-position="currentPosition">
+      <kz-frame @tab-change="tabChange" :tab-data="tabData" :tab-index="tabIndex" :current-tab="currentTab" @changecompont="changecompont" @changestyle="changestyle" @add-tabs="addTabs" :fault-com="iid"  test="true"  :enterprise-list="enterpriseList"  :nav-list="navList" :current-position="currentPosition">
           <kz-frame-warp title="栏目名称" :tab-data="tabData" :tab-index="tabIndex" :current-tab="currentTab" @add-tab="addTab" @remove-tab="removeTab">
               <div style="width:1000px;margin:0 auto;">
                   <el-table border :data="list" size="mini">
@@ -200,6 +200,12 @@
           });
           this.tabIndex = newTabName;
         },
+        addTabs(tabId){
+          this.tabIndex=tabId;
+          this.currentTab=tabId;
+          console.log(this.currentTab);
+          console.log(this.tabData);
+        }
       }
     };
     var Ctor = Vue.extend(Main)

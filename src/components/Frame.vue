@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="kz-layout">
-      <kz-aside  @isload="loaded"  :test="test" :fold="fold" :current-position="currentPosition" :current-tab="currentTab" :tab-data="tabData" :tab-index="tabIndex" @left-change="leftChange" :toggle="toggle"></kz-aside>
+      <kz-aside  @isload="loaded"  :test="test" :fold="fold" :current-position="currentPosition" :current-tab="currentTab" :tab-data="tabData" :tab-index="tabIndex" @left-change="leftChange" @add-tabs="addTabs" :toggle="toggle"></kz-aside>
       <kz-head   @tab-change="tabChange" @changecompont="changecompont" @changestyle="changestyle" :enterprise-list="enterpriseList" :fault-com="faultCom" :nav-list="navList" :current-position="currentPosition"></kz-head>
         <div class="kz-content" :style="'left:'+left+'px'">
             <slot></slot>
@@ -68,6 +68,9 @@ export default {
       console.log(leftMsg);
       this.left=leftMsg.left;
       this.toggle=leftMsg.toggle;
+    },
+    addTabs(tabId){
+      this.$emit("add-tabs",tabId);
     }
   }
 };
