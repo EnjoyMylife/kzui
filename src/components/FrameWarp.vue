@@ -11,7 +11,7 @@
       <slot></slot>
     </kz-tab-panel>
   </kz-tabs>
-  <div >
+  <!-- <div >
     <el-button
       size="small"
       @click="addTab(tabIndex)"
@@ -24,7 +24,7 @@
     >
       switch tab2
     </el-button>
-  </div>
+  </div> -->
 	<!-- <section class="kz-content-header">
 		<h1>
 			{{title}}
@@ -43,7 +43,7 @@ export default {
   props: ["title", "tabData", "tabIndex", "currentTab"],
   methods:{
     removeTab: function (targetName) {
-      let tabs = this.tabsData;
+      let tabs = this.tabData;
         let activeName = this.tabIndex;
         if (activeName === targetName) {
           tabs.forEach((tab, index) => {
@@ -57,7 +57,7 @@ export default {
         }
       console.log(activeName)
       this.tabIndex = activeName;
-      this.tabsData = tabs.filter(tab => tab.name !== targetName);
+      this.tabData = tabs.filter(tab => tab.name !== targetName);
     },
     addTab(targetName) {
         let newTabName = ++this.currentTab + '';

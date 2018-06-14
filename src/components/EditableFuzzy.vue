@@ -12,6 +12,7 @@
                    @keydown="handlerKeydown" 
                    v-model="inputValue" 
                    :data="data" 
+                   :domitem="domitem"
                 :options="options">
                     <slot v-if="$slots.default"></slot>
                     <slot v-if="$slots.btn" slot="btn" name="btn"></slot>
@@ -45,6 +46,12 @@ export default {
      fitcount:{
       type:Number,
       default:20
+    },
+    domitem:{
+      type:String,
+      default:function(){
+        return '';
+      }
     },
     data: {
       type: Array,
