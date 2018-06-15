@@ -21,7 +21,7 @@ let kzui = { Card, Fuzzy, EditableFuzzy, EditableInput, Frame, FrameWarp, Aside,
 const install = () => {
   for (let k in kzui) {
     window.Vue.component(kzui[k].name, kzui[k]);
-    console.log(kzui[k])
+    // console.log(kzui[k])
   }
   window.kzPublicApi={
     http,querystring,cookie,object

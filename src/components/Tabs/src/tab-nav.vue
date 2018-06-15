@@ -64,9 +64,9 @@ export default {
     padding: 0 20px;
   }
   .kz-tab__item.is-active {
-    color: #eaedf1;
-    background: #ed5565;
-    border: 1px solid #ed5565;
+    color: #555;
+    background: #eaedf1;
+    border: 1px solid #eaedf1;
   }
   .kz-tab__item .icon-close {
     position: absolute;
