@@ -22,14 +22,14 @@ export default{
             document.cookie = encodeURIComponent(String(name)) + "=" + newValue + (options.expires != null ? "; expires=" + options.expires.toUTCString() : "") + ("; path=/") + ("; domain=" + options.domain) + (options.secure != null ? "; secure" : "");
         }
     },
-    getCookies(name) {
+    getCookie(name) {
         if (name != null) {
             var value = new RegExp("(?:^|; )" + encodeURIComponent(String(name)) + "=([^;]*)").exec(document.cookie);
             return value ? decodeURIComponent(value[1]) : null;
         }
         return null;
     },
-    removeCookie(namek) {
-        this.setCookie(name, null, { expires: -1 });
+    removeCookie(name,opt) {
+        this.setCookie(name, null, { expires: -1 ,domain:opt.domain});
     }
 }

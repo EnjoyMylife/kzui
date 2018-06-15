@@ -1,7 +1,7 @@
 import axios from 'axios'
 import jsonp from 'jsonp'
 import querystring from "querystring"
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 15000;
 
 const parseParam = function (param) {
     let paramStr = "";
@@ -21,10 +21,22 @@ const parseParam = function (param) {
 axios.defaults.headers.post['Content-Type'] = 'application/x-www=form-urlencoded'
 export default {
     request(config) {
-        axios.request(config);
+        return new Promise((resolve, reject) => {
+            axios.request(config).then(res => {
+                resolve(res)
+            }).catch(error => {
+                resolve({ code: -999, msg: '系统异常', e: error })
+            })
+        })
     },
-    jsonp(url, data, call) {
-        jsonp(url + "?" + querystring.parse(data), call)
+    jsonp(url, params = {}) {
+        return new Promise((resolve, reject) => {
+            jsonp(url + "?" + querystring.parse(data), (data)=>{
+                resolve(data)
+            },(error)=>{
+                resolve({ code: -999, msg: '系统异常', e: error })
+            })
+        })
     }
     ,
     get(url, params = {}) {
