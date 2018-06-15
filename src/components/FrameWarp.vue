@@ -8,9 +8,10 @@
       :name="item.name"
     >
       <!-- {{item.content}} -->
-      <slot></slot>
+      
     </kz-tab-panel>
   </kz-tabs>
+  <slot></slot>
   <!-- <div >
     <el-button
       size="small"
