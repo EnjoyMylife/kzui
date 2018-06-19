@@ -47,12 +47,6 @@ export default {
       type:Number,
       default:20
     },
-    domitem:{
-      type:String,
-      default:function(){
-        return '';
-      }
-    },
     data: {
       type: Array,
       default: function() {

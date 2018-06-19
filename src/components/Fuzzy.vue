@@ -129,12 +129,6 @@ export default {
         return item;
       }
     },
-    domitem:{
-      type:String,
-      default:function(){
-        return '';
-      }
-    },
     match: {
       type: Function,
       default: function(item) {
