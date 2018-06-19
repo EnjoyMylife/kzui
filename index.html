@@ -41,7 +41,7 @@
                   <el-table border :data="list" size="mini">
                       <el-table-column align="center" label="多项下拉" width="180">
                         <template slot-scope="scope">
-                          <kz-editable-fuzzy :ref="'input'+scope.$index+'1'" :domitem="'input'+scope.$index+'1'" :fitcount="20" @end="handlerEnd" :match="serchFilter" :set-val="setVal" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'1') }" :options="options"
+                          <kz-editable-fuzzy :ref="'input'+scope.$index+'1'"  :fitcount="20" @end="handlerEnd" :match="serchFilter" :set-val="setVal" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'1') }" :options="options"
                             v-model="selVal2" :data="serchList">
                             <div style="background:#f5f5f5;color:#85ce61;font-weight:bold;" @click="handleAdd">添加</div>
                             <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
@@ -186,10 +186,8 @@
         },
         handlerKeydown(o,e) {
           console.log(o.e);
-          var a='';
-          var b='';
-          a=e.substr(5,1);
-          b=e.substr(6,1);
+          var a=e.substr(5,1);
+          var b=e.substr(6,1);
           if(b==3){
             b=1;
             if(a==this.list.length-1){
@@ -215,12 +213,10 @@
           this.$prompt('请输入', '添加', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
-            inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-            inputErrorMessage: '邮箱格式不正确'
           }).then(({ value }) => {
             this.$message({
               type: 'success',
-              message: '你的邮箱是: ' + value
+              message: '你添加的是: ' + value
             });
           }).catch(() => {
             this.$message({
