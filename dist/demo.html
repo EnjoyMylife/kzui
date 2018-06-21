@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>组件demo</title>
+</head>
+
+<body>
+  <script src='https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js'></script>
+  <link rel="stylesheet" href="https://kz-fe.oss-cn-hangzhou.aliyuncs.com/lib/elementui@2.3.8.css">
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="./kzui.min.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .demopage .el-table th {
+      text-align: center;
+      background: #f5f5f5;
+    }
+
+    .demopage .kz-mini-size {
+      padding: 5px 10px;
+    }
+
+    .demopage .el-table {
+      overflow: initial;
+    }
+
+    .demopage .el-table__body-wrapper {
+      overflow: initial;
+    }
+  </style>
+  <div id="app" class="demopage">
+      <kz-frame @tab-change="tabChange" :tab-data="tabData" :tab-index="tabIndex" :current-tab="currentTab" @changecompont="changecompont" @changestyle="changestyle" @add-tabs="addTabs" :fault-com="iid"  test="true"  :enterprise-list="enterpriseList"  :nav-list="navList" :current-position="currentPosition">
+          <kz-frame-warp title="栏目名称" :tab-data="tabData" :tab-index="tabIndex" :current-tab="currentTab" @add-tab="addTab" @remove-tab="removeTab">
+              <div style="width:90%;margin:0 auto;margin-left: 15px;">
+                  <el-table border :data="list" size="mini">
+                      <el-table-column align="center" label="多项下拉" width="180">
+                        <template slot-scope="scope">
+                          <kz-editable-fuzzy :ref="'input'+scope.$index+'1'"  :fitcount="20" @end="handlerEnd" :match="serchFilter" :set-val="setVal" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'1') }" :options="options"
+                            v-model="selVal2" :data="serchList">
+                            <div style="background:#f5f5f5;color:#85ce61;font-weight:bold;" @click="handleAdd">添加</div>
+                            <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
+                          </kz-editable-fuzzy>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="单项下拉" width="180">
+                        <template slot-scope="scope" >
+                          <kz-editable-fuzzy :ref="'input'+scope.$index+'2'"  @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'2') }" v-model="selVal1" :data="listtest">
+                            <el-button tabindex="-1" @click="handleClick(scope)" class="kz-mini-size" slot="btn" size="mini" type="success">选择</el-button>
+                          </kz-editable-fuzzy>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" label="姓名" width="180">
+                        <template slot-scope="scope">
+                          <kz-editable-input :ref="'input'+scope.$index+'3'"  @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'3') }" v-model="selVal1"></kz-editable-input>
+                        </template>
+                      </el-table-column>
+                      <el-table-column align="center" prop="cc" label="地址">
+                      </el-table-column>
+                    </el-table>
+                    <input id="myfile" type="button" @click="list.push({})" value="点击" />
+              </div>
+          </kz-frame-warp>
+        </kz-frame>
+
+
+  </div>
+  
+ 
+  <script>
+    var imgs="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd8AAAA0CAMAAAD8KsKfAAABFFBMVEUAAAAQxVsQxVsQxVsQxVsQxVsQxVuIiIiIiIgQxVsQxVthn3iIiIgQxVsQxVuIiIhmZmaIiIgQxVuIiIhmZmYQxVuIiIgQxVuIiIiIiIgQxVuIiIiIiIiIiIiIiIgQxVuIiIiGhoaIiIiIiIiIiIiIiIiIiIgQxVuIiIiIiIgQxVuIiIgQxVuIiIiIiIiIiIiGhoYQxVuIiIiIiIgQxVuIiIiIiIgQxVuIiIiIiIiIiIiIiIiIiIgQxVsQxVuIiIiIiIiIiIgQxVuIiIiIiIgQxVsQxVuIiIgQxVuIiIgQxVsQxVsQxVuIiIgQxVsQxVsQxVsQxVsQxVsQxVsQxVsQxVsQxVsQxVtmZmZmZmYQxVuIiIi9buujAAAAWnRSTlMAiHgeu96lCyhWEAMzlvE9Zgeq3oVDLmZJspkVEPfVzEUix3e3zmAI8sG0nl4d628ZF4qQ9qd+wrxUrVln++2XheXYTUHUfDhtTyLmyFFMOy6RoIQzUiiMj4hL8a22AAAMbElEQVR42uzXTWurQBTG8ceXBlQMF7kSyEbuShAXdyDgKlkElKKi0Zr03vP9P0jJTO2QEnxrSjfz2zmLUfhzDogF7Pp5W3qQWNxE5lTei+/gM2PjTr9hldUOlG/gXKyX6ImuIpl7u6d5ihg3mDf3hmMF5aGY/7wNdtSTfVlK82mAZBQ03wZj/v6BMqnsxk0OJN32XdESFaSEFthfMOLXPyhDwtNZb0tZ9m5fRoKrTfMe08SHjgRtopQ4d7Tvfyj3hHkdZ21SkDDc1yLBwDQ6cTsH8kTAFHJhHEf7/obC2bad551fxbrWRumBxq3TTNa57dvpXD7clxh6zbK+O9V3EprjEESNfu5sfMg+9xUL+Ckc6Wug55KQBFcWhNAMeq94Z/HHAwmq76P67ovSa/TYv4TjvWriGv+ucKBvJjZD3p9KZ3DGWgyu6vvAvmXVMUijfT0aYgz0DY9ijB0AqIhLxdZgAOCIzXD0VN85koArTTPyvNbV9I1V1SfDXhO3gjCx74kW94VPnA6AFXRlMvEVEeSb/JXq+wjL+prL+/azv8uBtv/H1YmzgIvYyx5U35/ra9FX+hoiodlP8ivgiKVd2EhEfEP1/bm+7I1dc21OGojC8Os1sUE7MdMIQmKBhBKBhFJBoFUaW22tl473mb7//38obDabtLTFMY5ffD6QnWxYljxzzh6yJLXt5+01xdc7qd7PxpV+8UW0ukLqyzW1EN/viuMX/Pf77/w+TZ9+rEFy+i771Plqv1vi2mS34RhqzBcvRRxv/ff77/zeOEt5Lf111Z7ETVznF8fZPSIDc76/yO0qFOX34AiXY+BPqeomrqW/ecl5Uzaqy2ai1bV/4VfolbzbAABDnXvwEdf73bqjRrgHweOs8qL81tjApUziQyHpbR9RxUAW0YOeXp+j96CIRkiZch3XMuIHLEHnEALLWWay6bRwGTU57+L9fk1zq2i8AbZvKzXfsYJfdM8kTyAQVZdUXpTfMicA+g1BMB1mRe3xAHNabGKWF9US996MKXCRYrYZQTK+wq99VFpgtxiXbNE+6mUcWTwUDVpYwj4v9WvEvgm0OCjeryh6j09VBD79ppbeh2tYya+R7iZvQPJDKS/Gr1nXh1yv67redtpzLLIOxS5F4gyoo88xMugWZwBMtgc7OzsDx8l6a3MPCZXL/RpcxhSKviXGebtcZFPoX94VGECVjlm833siB6/dXbId0QVW8qt+Yb1HyrYM4I8F+dWZYKdCO7ngFh1V+gAarCJDLeQOYCTp3SUyHJGT6/2iPJkclBboujh+mExKWLDpVabTqfvrxYswpG1qcyAw9JJt23qHkW7PKdWQp0Yx2RE7xft9dPb+ROTY8ztQz0+wsl+8li4Vn2T4FuS3Fu3TK0+iqJbc1GyabQaeS98b1zFgedHZQZZ1fxfQk3iziCxRYF/pV6HbpRS7ns3/DEMnDkNyBodzQjq1VF+eFvJUKEoAI2S5cL/HNw0ZcJ9ze05dYHW/W8nn3rz4nqdF+JVG9aqm0nFDQ8qsHYdsh+0eGCYO6zjPkLvKb47V/K4zRxUZTCNNtuPBbMejO0qmp3W8yi9iBvPD1OIuckR01fj1ov0akORq3menWN2v+oV0Rw1nyCX9pDC/vgP6EOyQTeQYcT1TxmzSv7jMWWJ6Hi0vWGZyyPrVfvdrmmSc9+tbwNQFTGcRjYecXBi7lug8ODcodfUV4nrBfhUbT3K7i/e3f8PvK7UpKPkmT30qyq/GDhiIm2LRG9PNOXJpA32GEAQcQfDBcWK3Ci9dufWATKqdvmtZwQzadOz9ImZjfggiLOWII5gJ8HJ+9zk0sEffmJHT89VUb9MEGuwlV272Mu+0c/m6w/bh3/G7ceH/cs9+bK/q9/RMchuS22mm3yrIb4t90ANwVOFcXpOc1rNl0h5g8S2w16zOTTPRdNgIHOoYVjSkyOqnH7dDhqgxx3DV/Kx6XBGb49BrtBfR2staawExxUcOGHGYrd4HizlW5aVsaoX73eq+VobevEtj+O7pCn6VPJWNgRN1qluQ34C2Td/uDUlREfUqVM8apnToI/ABQ2S8FmMDCQPawCDanwlGe8hACxAxWeHhomVgKX13v7yZUB76udLeTFaNXQzYB0IHKYbDHjSGcmEpWdRUYdYRA4RVOVNRBN762c65dqUNBGF4WqukhMqhnGKUJCVg5H6XSwptVaxAr3hrz+n8//9Rk93NbkAD0hT7Ie8XNAuEw5OZnX13yHVv+x6xpc09Q2elSf4+vvk3V7tuzF7d2LS/csfy4udyvlGhw/qCdwAxvQiIbxIdmbmOBFRTMwZEBp5qZTTtuMzQJF6XgKmNEiRqyBXx8OXXSMzHl5RiGSPiKqWkpLQboIrNN9IZSjazATTwUDRe2jbBIq0EUR7gEBjNMjVW3sns2cmpnU4Jkkfq06Jf8aO0y4cnbPzmkq+Wti/zS/hWxFOICyb2qmD4jqeWhfogA1VpHHeUiQjBncN0xrn29zEDVCJfSPSxGlFVVVY87oeMyZXq5w4uqMsm2HHKZnjk0GpgEYbipFqzM/kIW+xaUBP8jHGa3gsJXomTr28t/Vrge+1ifDYDQfnb18er7P/yqZY+fbbYEfI8AL5UuO98YUxZN5CxHsNzqCsAKp7CvXwhZkNwzA9pDb6HOFAUiSk1UnIMmeOZYo6ABNBRFe2VukO9jRbLEQboqHgzE5lmhKTyez2VOF8Pua8XHC5H/P3gyyp8mzQz79JLiLuTuz1icQTI9xAgoViDwUdsDQaWi0NDyNAvLWdnv3p7ni8BG3Oe8BHW4uu40GQGHhsAVTwBrj6amKMrcx37ojvVIEHM3saAetLyruz2nU+X/Cd8zw4qTXhIN5PSh2V89+jYAckDYGublHl06HMQfCNGfJDTCjpOBTfSJVOGI8q3oMkAJo7n+coqVLGgwojwXJkvH1ShgUw1gJiHL/TdvGGiJvGPPbSpH7nEi1iFRMJrvJINp7JQVz97QMd0FnxguLLA93MTlkieyX58WXrusf6cGU/P36NkY2oSBN9ztKXpfQkACE2uhHtkiHWn3NK9fCGVzDimVx01Y5FvpGuswjeNZWa1LPDNIsvXnYUdpHQBYy78NHil44gNHf2D/f3m5PLgYV3fykvq5zxjKH9wK+jnbOVbIhV0EHwbrfq5xMJA5Os9UiiQMoYYDLxOJe5GF1FLwxxfHTI1lFbj20lX79TQF/hmsZslgHOIc+53ROdTQg0j4FGZv00SpcD5btlU/LSzhO93d2jH3UPqkVey3P0+Gtj8y/iOMHYv3xYtnmNiAEeKiHoKQK0nEbGdAo+0pO0qJB6Xn3UACVviGdp2lLZsvNpI9wCumpgVnBAv+haactqQUuNzJX6IesB8CQF/5f35XpIaiq+TmtBkxgb762VgfItgWKPRKNPGbubu8VtD5Es8rWyypiGiwKrqmNWpNqJmSX3E/YHoPWmIJOevEr/9uGIrIwFMOd842WCOZ+PQRhyDUcC+AVTK3T8JgFS5mxt2NazPmTZetTbPN+rP94y1SEL0PcVaYVELQEztgwD5dlHUkZdvBzUsJLP75e4JnvIqpm7BiYlYcPZ0LB0RTYNbx9qQlch+fIuYBplt3lpZM4vuFNF1NzuqWazFSEcBKwBzNFun0NGhPFfZn+p68V25lRsOpnEFcRAw3zevl8k/frfIo+Nk9ijMA1pxuc2z24HxNcGwvt1pqkztB6vq5aueVxlV3VSBq4FYHLChUQcPI25wf5RgFb6dgvB+loaYzIHgOREpaJLUoGZ1lR7SyeUjD3O5k5MpeCXHIiDopDYKlu8q8uNL4/84z2GeCSHNiuqtgPieP2wgphUVREXAo6o039G2KGPs4+2raRmWKyWU9OsoAv8Z3x1WIXOYN0IvVp7m7LD/+an6n+Uflb2H9fLzEr7bwrZCniy/aXN7HoScHfJ9Ir7Rt7/9deHLt+npm6QbT2Kv3TOSs0O+T8S3svR34r711S2tsVlPHdcrT2tlKeS7mv6z9RENTyASL5aKZ6M/vD/DU8Xv9jL58u15zvdT4DsDIko25LtBvhdr1s/NBb5RR3mginJ5Dm2F99/YJN+9NfnmF/jCanoVxu/m+PI8uvdyNe2wkviRfH+Ql0/usnh4/6uN8SW28BqaPJZvaeHGPiHfjfCdHa+Btyf/Nd9KeP/JjfCFm7NH472Kwt/y/QXh/WM3wxfk26tPqwfxl971DOCv+H54ezmD8P7PoUL9AZjYV8EwyfMOAAAAAElFTkSuQmCC";
+    var Main = {
+      name: 'test',
+      data() {
+        return {
+          enterpriseList:[{"id":150,"enterpriseName":"测试1 ","enterpriseNum":"E00000000000515"},{"id":151,"enterpriseName":"测试2","enterpriseNum":"E000000000005125"}],
+          iid:151,
+          navList:[{name:'menu',content:'采购',notice:true},{name:'trade',content:'销售',notice:false},{name:'store',content:'仓库',notice:true},{name:'money',content:'资金',notice:true},{name:'material',content:'资料',notice:true},{name:'set',content:'设置',notice:true}],
+          currentPosition:0,
+          tabIndex: '1',
+          currentTab: 1,
+          tabData: [
+            {
+              title: '首页',
+              name: '1',
+              content: 'tab1 content'
+            }
+          ],
+          selVal1: 1,
+          selVal2: "壳牌",
+          listtest: ["aabc", "cbaaa", "ssssss", "sdsd"],
+          options: [
+            {
+              label: "名称", prop: "name", width: "180px",
+
+            }, {
+              label: "规格", prop: "number", width: "280px"
+            }, {
+              label: "折扣", prop: "discountRate", width: "60px",
+            }
+          ],
+          serchList: [
+            {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 0,
+              name: "壳牌 1102000002 汽机油",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 66,
+              name: "鹰旗润滑油",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 88,
+              name: "玛莎拉蒂",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 88,
+              name: "玛莎拉蒂",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 88,
+              name: "玛莎拉蒂",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 88,
+              name: "玛莎拉蒂",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 88,
+              name: "玛莎拉蒂",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }, {
+              id: "22", barCode: "",
+              categoryId: "110200",
+              categoryName: "汽机油",
+              carModel: "111",
+              discountRate: 88,
+              name: "玛莎拉蒂",
+              number: "超凡喜力（SN） 5W-40/1L"
+            }
+
+
+          ],
+          list: [{  }, { }, {  }, {  }, { }, {  }, { }, { }, {  }, {  }],
+        }
+      },
+      mounted() {
+        console.log(this.$refs)
+      },
+      methods: {
+        handleClick(e) {
+          alert("这边可以出现弹出窗");
+          console.log(e);
+        },
+        handlerKeydown(o,e) {
+          console.log(o.e);
+          var a=e.substr(5,1);
+          var b=e.substr(6,1);
+          if(b==3){
+            b=1;
+            if(a==this.list.length-1){
+              a=0;
+            }else{
+              a=parseInt(a)+1;
+            }
+            
+          }else{
+            b=parseInt(b)+1;
+            }
+            var ref='input'+a+b;
+            if (o.e.code == "Enter"){
+              this.$refs[ref].handlerFocus();
+              this.$refs[e].handlerEnd();
+            }
+          console.log(ref);
+        },
+        handlerEnd(e) {
+          console.log(e)
+        },
+        handleAdd(){
+          this.$prompt('请输入', '添加', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+          }).then(({ value }) => {
+            this.$message({
+              type: 'success',
+              message: '你添加的是: ' + value
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '取消输入'
+            });       
+          });
+        },
+        serchFilter(item) {
+          return true;
+        },
+        setVal(item) {
+          return item.name;
+        },
+        changecompont:function(i){
+          console.log(i)
+        },
+        changestyle:function(i){
+          console.log(i)
+        },
+        tabChange(index){
+          this.currentPosition=index;
+        },
+        removeTab: function (targetName) {
+          let tabs = this.tabsData;
+            let activeName = this.tabIndex;
+            if (activeName === targetName) {
+              tabs.forEach((tab, index) => {
+                if (tab.name === targetName) {
+                  let nextTab = tabs[index + 1] || tabs[index - 1];
+                  if (nextTab) {
+                    activeName = nextTab.name;
+                  }
+                }
+              });
+            }
+          console.log(activeName)
+          this.tabIndex = activeName;
+          this.tabsData = tabs.filter(tab => tab.name !== targetName);
+        },
+        addTab(targetName) {
+          let newTabName = ++this.currentTab + '';
+          this.tabsData.push({
+            title: 'New Tab',
+            name: newTabName,
+            content: 'New Tab content'
+          });
+          this.tabIndex = newTabName;
+        },
+        addTabs(tabId){
+          this.tabIndex=tabId;
+          this.currentTab=tabId;
+          console.log(this.currentTab);
+          console.log(this.tabData);
+        }
+      }
+    };
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>
+
+</html>
