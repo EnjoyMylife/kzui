@@ -87,13 +87,13 @@ export default {
     },
     eidtCell() {
       this.handlerEdit();
-      this.$refs.input.togleFold();
+     // this.$refs.input.togleFold();
     },
     handlerEdit() {
       this.eidt = true;
-      // setTimeout(() => {
-      //   this.$children[0].$refs.sercheInput.focus();
-      // }, 1);
+      setTimeout(() => {
+        this.$children[0].$refs.sercheInput.focus();
+      }, 1);
     },
     handlerEnd() {
       if(this.eidt){
