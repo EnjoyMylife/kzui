@@ -87,13 +87,13 @@ export default {
     },
     eidtCell() {
       this.handlerEdit();
-     // this.$refs.input.togleFold();
+      this.$refs.input.togleFold();
     },
     handlerEdit() {
       this.eidt = true;
-      setTimeout(() => {
-        this.$children[0].$refs.sercheInput.focus();
-      }, 1);
+      // setTimeout(() => {
+      //   this.$children[0].$refs.sercheInput.focus();
+      // }, 1);
     },
     handlerEnd() {
       if(this.eidt){
@@ -119,6 +119,7 @@ export default {
 .kz-fuzzy-fit {
   display: inline-block;
   width: 100%;
+  min-height: 15px;
   height: 100%;
 }
 .kz-fuzzy-fit .edits {

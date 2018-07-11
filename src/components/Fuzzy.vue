@@ -85,7 +85,7 @@ export default {
         return data;
       }
       return data.filter((item) => {
-        return this.match(item);
+        return this.match(key,item);
       });
     },
     warpWidth() {
