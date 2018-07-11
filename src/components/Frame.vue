@@ -53,19 +53,15 @@ export default {
       this.load = false;
     },
     changecompont(i) {
-      console.log(i);
       this.$emit("changecompont", i);
     },
     changestyle(i){
-      console.log(i);
       this.$emit("changestyle", i);
     },
     tabChange(index){
-        console.log(index);
         this.$emit('tab-change', index);
     },
     leftChange(leftMsg){
-      console.log(leftMsg);
       this.left=leftMsg.left;
       this.toggle=leftMsg.toggle;
     },

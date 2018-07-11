@@ -5,17 +5,17 @@
         @focus="isSelect = true"
         @keydown="handlerKeydown"
         @keyup="handlerKeyup"
-         placeholder="请输入字符查询" 
-         v-model="inputValue" 
-         class="kz-fuzzy-input" 
-      type="text" />
+        placeholder="请输入字符查询" 
+        v-model="inputValue" 
+        class="kz-fuzzy-input" 
+        type="text" />
       <span class="kz-fuzzy-type">
         <slot v-if="$slots.btn" name="btn"></slot>
         <span @click="togleFold" class="kz-triangle-down" v-else></span>
       </span>    
       <transition
-      name="el-zoom-in-top"
-     >
+        name="el-zoom-in-top"
+      >
       <div v-show="!fold" class="kz-droplist-wrap" :style="'width:'+warpWidth">
         <div  class="popper__arrow" style="left: 35px;"></div>
         <div ref="droplist" class="kz-droplist" >
@@ -36,16 +36,16 @@
                 v-for="(opt,index) in options"
                 :style="(!opt.width?'flex:1;':'')+'width:'+opt.width" 
                 >
-                    {{item[opt.prop]}}
+                  {{item[opt.prop]}}
                 </span>
                </p>
               <span v-else style="flex:1"  >
-                  {{item}}
+                {{item}}
               </span>
             </div>
           </div>
           <div v-else style="text-align:center"  >
-              <span style="flex:1">没有匹配的选项</span>
+            <span style="flex:1">没有匹配的选项</span>
           </div>
         </div>
         <slot></slot>
@@ -157,7 +157,6 @@ export default {
 
       let menu = this.$refs.droplist;
       if (menu) {
-        //console.log(this.$refs)
         try {
           if (menu.children.length > 1) {
             let target = this.$refs.droplist.children[1].children[this.current];
@@ -208,7 +207,6 @@ export default {
         setTimeout((e)=>{
            this.$refs.sercheInput.focus();
         },1)
-       
       }
     },
     getEXt(str) {

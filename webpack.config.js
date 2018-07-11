@@ -6,7 +6,6 @@ function resolve(dir) {
 function resolveLoad(dir) {
   return path.join(__dirname,  dir)
 }
-console.log(resolve('src'))
 module.exports = {
   entry: './src/index.js',
   output: {

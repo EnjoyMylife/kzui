@@ -170,7 +170,6 @@ export default {
     let _this = this;
     if (this.test) {
       userInfo = {};
-      // console.log(this.currentPosition);
       let data = {
         0: [
           {
@@ -418,7 +417,6 @@ export default {
           }
         ]
       };
-      console.log(this.currentPosition);
       for(let i=0;i<6;i++){
         this.position[i] = this.setMenuData(data[i]);
       }
@@ -472,7 +470,6 @@ export default {
               return;
             }
             if (res.code == 200) {
-              console.log("菜单目录：", res);
               _this.menu = _this.setMenuData(res.data);
             } else {
               if ((res.code = "A400600")) {
@@ -499,7 +496,6 @@ export default {
       Vue.set(this.tabStyle[currentPosition], i, {
         "background-color": "#ff5d6e"
       });
-      // console.log(this.tabStyle[currentPosition][i])
       //tab栏联动
       var flag = false;
       this.tabData.forEach(item => {
@@ -523,7 +519,6 @@ export default {
           'toggle':!this.toggle,
           'left':!this.toggle?50:180
         }
-        console.log(leftMsg.left);
       this.$emit('left-change', leftMsg)
     }
   }
