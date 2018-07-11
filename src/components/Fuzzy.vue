@@ -159,12 +159,14 @@ export default {
       if (menu) {
         try {
           if (menu.children.length > 1) {
-            let target = this.$refs.droplist.children[1].children[this.current];
+            var target = this.$refs.droplist.children[1].children[this.current];
           } else {
-            let target = this.$refs.droplist.children[0].children[this.current];
+            var target = this.$refs.droplist.children[0].children[this.current];
           }
-          scrollIntoView(menu, target);
-        } catch (error) {}
+          scrollIntoView(menu, target); 
+        } catch (error) {
+          console.log(error)
+        }
       }
       if (e.code != "Tab" && e.code != "Enter") {
         this.fold = false;
