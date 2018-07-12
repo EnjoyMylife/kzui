@@ -56,7 +56,7 @@ export default {
             }
           });
         }
-      console.log(activeName)
+      //console.log(activeName)
       this.tabIndex = activeName;
       this.tabData = tabs.filter(tab => tab.name !== targetName);
     },
@@ -73,9 +73,9 @@ export default {
         alert('this btn has been clicked.')
       },
       handleSwitch(tabindex) {
-        console.log(tabindex)
+        //console.log(tabindex)
         this.tabIndex = tabindex.toString()
-        console.log(this.currentTab)
+        //console.log(this.currentTab)
       }
   }
 };

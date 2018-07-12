@@ -166,7 +166,7 @@ export default {
           }
           scrollIntoView(menu, target); 
         } catch (error) {
-          console.log(error)
+         // console.log(error)
         }
       }
       if (e.code != "Tab" && e.code != "Enter") {

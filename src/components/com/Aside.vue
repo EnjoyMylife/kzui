@@ -418,7 +418,7 @@ export default {
           }
         ]
       };
-      console.log(this.currentPosition);
+     // console.log(this.currentPosition);
       for(let i=0;i<6;i++){
         this.position[i] = this.setMenuData(data[i]);
       }
@@ -472,7 +472,7 @@ export default {
               return;
             }
             if (res.code == 200) {
-              console.log("菜单目录：", res);
+              //console.log("菜单目录：", res);
               _this.menu = _this.setMenuData(res.data);
             } else {
               if ((res.code = "A400600")) {
@@ -523,7 +523,7 @@ export default {
           'toggle':!this.toggle,
           'left':!this.toggle?50:180
         }
-        console.log(leftMsg.left);
+        //console.log(leftMsg.left);
       this.$emit('left-change', leftMsg)
     }
   }
