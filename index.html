@@ -49,7 +49,7 @@
                     <el-input v-model="formInline.tel" placeholder="手机号码"></el-input>
                   </el-form-item>
                 <el-form-item prop="region" label="活动区域">
-                  <el-select    v-model="formInline.region" placeholder="活动区域">
+                  <el-select @focus="toggleMenu" ref="abb"   v-model="formInline.region" placeholder="活动区域">
                     <el-option label="区域一" value="shanghai"></el-option>
                     <el-option label="区域二" value="beijing"></el-option>
                   </el-select>
@@ -58,8 +58,13 @@
                   <el-button type="primary" @click="onSubmit">提交</el-button>
                 </el-form-item>
               </el-form>
-              <div style="width:90%;margin:0 auto;margin-left: 15px;">
+              <div style="width:90%;margin:0 auto;margin-left: 15px;">    
                   <el-table border :data="list" size="mini">
+                      <el-table-column align="center" label="多项下拉" width="180">
+                          <template slot-scope="scope">
+                              <el-select v-model="value" placeholder="请选择"></el-select>
+                          </template>
+                        </el-table-column>
                     <el-table-column align="center" label="多项下拉" width="180">
                       <template slot-scope="scope">
                         <kz-editable-fuzzy :ref="'input'+scope.$index+'1'" :fitcount="20" @end="handlerEnd" :match="serchFilter" :set-val="setVal"
@@ -84,6 +89,22 @@
                       </template>
                     </el-table-column>
                     <el-table-column align="center" prop="cc" label="地址">
+                      <template  slot-scope="scope">
+                          <el-popover
+                            placement="bottom"
+                            width="250"
+                            trigger="click">
+                            <el-table :data="gridData">
+                              <el-table-column width="150" property="date" label="仓库/货位"></el-table-column>
+                              <el-table-column width="100" property="name" label="姓名">
+                                <template  slot-scope="scope">
+                                    <el-input  placeholder="请输入内容" ></el-input>
+                                </template>
+                              </el-table-column>
+                            </el-table>
+                            <el-button slot="reference">click 激活</el-button>
+                          </el-popover>
+                      </template>
                     </el-table-column>
                   </el-table>
                   <input id="myfile" type="button" @click="list.push({})" value="点击" />
@@ -111,6 +132,24 @@
           }
         }
         return {
+          value:"",
+          gridData:[{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }],
           formInline: {
             user: '',
             region: '',
@@ -230,8 +269,13 @@
       },
       mounted() {
         console.log(this.$refs)
+        
+        
       },
       methods: {
+        toggleMenu(e){
+          this.$refs.abb.toggleMenu();
+        },
         handleClick(e) {
           alert("这边可以出现弹出窗");
           console.log(e);
