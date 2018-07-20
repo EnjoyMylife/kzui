@@ -2,7 +2,7 @@
         <span :tabindex="tabindex" @focus="handlerFocus"  class="kz-input-fit" @click="handlerEdit" v-clickoutside="handlerEnd" >
             <span >{{inputValue}}</span>
             <span class="edits" v-show="eidt">
-                <input class="kz-edit-input"  ref="sercheInput" @keyup="handlerKeyup"  @change="handlerChange" @keydown="handlerKeydown" v-model="inputValue"  />
+                <input class="kz-edit-input" @focus="inputHandlerFocus"  ref="sercheInput" @keyup="handlerKeyup"  @change="handlerChange" @keydown="handlerKeydown" v-model="inputValue"  />
             </span>
         </span>
 </template>
@@ -37,6 +37,9 @@ export default {
   directives: { Clickoutside },
   mounted() {},
   methods: {
+    inputHandlerFocus(e){
+      this.$emit("focus", e);
+    },
     handlerFocus(e){
       this.handlerEdit();
     },
@@ -75,6 +78,7 @@ export default {
 .kz-input-fit {
   display: inline-block;
   width: 100%;
+  min-height: 15px;
   height: 100%;
 }
 

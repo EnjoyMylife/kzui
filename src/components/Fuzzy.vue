@@ -2,7 +2,7 @@
   <div  v-clickoutside="handlerEnd" :class="'kz-fuzzy '+(isSelect?'is-focus':'')">
       <input 
         ref="sercheInput"
-        @focus="isSelect = true"
+        @focus="inputHandlerFocus"
         @keydown="handlerKeydown"
         @keyup="handlerKeyup"
          placeholder="请输入字符查询" 
@@ -137,6 +137,10 @@ export default {
     }
   },
   methods: {
+    inputHandlerFocus(e){
+      this.isSelect=true;
+      this.$emit("focus", e);
+    },
     handlerKeyup(e) {
       this.$emit("keyup", e);
     },

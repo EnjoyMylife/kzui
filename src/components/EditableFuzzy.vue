@@ -7,7 +7,8 @@
                 :match="match"
                 :fitcount="fitcount"
                  style="width: 100%;height:100%"
-                   @keyup="handlerKeyup"  
+                   @keyup="handlerKeyup"
+                   @focus="inputHandlerFocus"    
                    @change="handlerChange" 
                    @keydown="handlerKeydown" 
                    v-model="inputValue" 
@@ -82,6 +83,9 @@ export default {
   mounted() {
   },
   methods: {
+    inputHandlerFocus(e){
+      this.$emit("focus",e);
+    },
     handlerFocus(e){
       this.eidtCell();
     },
