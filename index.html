@@ -86,7 +86,9 @@
                     <el-table-column align="center" label="姓名" width="180">
                       <template slot-scope="scope">
                         <kz-editable-input :ref="'input'+scope.$index+'3'" @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'3') }"
-                          v-model="selVal1"></kz-editable-input>
+                          v-model="selVal1">
+                          <input style="margin-top:10px " slot="btn" type="button"  value="选择"/>
+                        </kz-editable-input>
                       </template>
                     </el-table-column>
                     <el-table-column align="center" prop="cc" label="地址">
@@ -277,8 +279,6 @@
       },
       mounted() {
         console.log(this.$refs)
-        
-        
       },
       methods: {
         goloading(e){

@@ -4,6 +4,9 @@
             <span class="edits" v-show="eidt">
                 <input class="kz-edit-input" @focus="inputHandlerFocus"  ref="sercheInput" @keyup="handlerKeyup"  @change="handlerChange" @keydown="handlerKeydown" v-model="inputValue"  />
             </span>
+            <span v-if="$slots.btn&&eidt" class="kz-input-slot">
+                <slot name="btn"></slot>
+            </span>
         </span>
 </template>
 
@@ -106,5 +109,10 @@ export default {
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   border-color: #409eff;
   text-align:  inherit;
+}
+.kz-input-slot{
+  position: absolute;
+  right: 5px;
+  top:5px;
 }
 </style>

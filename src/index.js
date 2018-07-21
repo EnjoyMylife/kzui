@@ -26,7 +26,7 @@ const install = () => {
   }
  
   
-  console.log( window.Vue)
+//  console.log( window.Vue)
   window.kzPublicApi={
     http,querystring,cookie,object
   }
