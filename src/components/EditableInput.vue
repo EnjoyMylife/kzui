@@ -2,7 +2,7 @@
         <span :tabindex="tabindex" @focus="handlerFocus"  class="kz-input-fit" @click="handlerEdit" v-clickoutside="handlerEnd" >
             <span >{{inputValue}}</span>
             <span class="edits" v-show="eidt">
-                <input class="kz-edit-input" @focus="inputHandlerFocus"  ref="sercheInput" @keyup="handlerKeyup"  @change="handlerChange" @keydown="handlerKeydown" v-model="inputValue"  />
+                <input class="kz-edit-input"  @focus="inputHandlerFocus"  ref="sercheInput" @keyup="handlerKeyup"  @change="handlerChange" @keydown="handlerKeydown" v-model="inputValue"  />
             </span>
             <span v-if="$slots.btn&&eidt" class="kz-input-slot">
                 <slot name="btn"></slot>
