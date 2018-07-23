@@ -85,7 +85,7 @@
                     </el-table-column>
                     <el-table-column align="center" label="姓名" width="180">
                       <template slot-scope="scope">
-                        <kz-editable-input :ref="'input'+scope.$index+'3'" @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'3') }"
+                        <kz-editable-input  maxlength="10" type="number"   :ref="'input'+scope.$index+'3'" @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'3') }"
                           v-model="selVal1">
                           <input style="margin-top:10px " slot="btn" type="button"  value="选择"/>
                         </kz-editable-input>
@@ -101,7 +101,7 @@
                               <el-table-column width="150" property="date" label="仓库/货位"></el-table-column>
                               <el-table-column width="100" property="name" label="姓名">
                                 <template  slot-scope="scope">
-                                    <el-input  placeholder="请输入内容" ></el-input>
+                                    <el-input maxlength="10"  placeholder="请输入内容" ></el-input>
                                 </template>
                               </el-table-column>
                             </el-table>
