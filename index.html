@@ -37,6 +37,7 @@
     .loading{padding: 10px; text-align: center;}
   </style>
   <div id="app" class="demopage">
+    
     <kz-frame @tab-change="tabChange" :tab-data="tabData" :tab-index="tabIndex" :current-tab="currentTab" @changecompont="changecompont"
       @changestyle="changestyle" @add-tabs="addTabs" :fault-com="iid" test="true" :enterprise-list="enterpriseList" :nav-list="navList"
       :current-position="currentPosition">
@@ -60,7 +61,7 @@
                 </el-form-item>
               </el-form>
               <div style="width:90%;margin:0 auto;margin-left: 15px;">    
-                  <el-table border :data="list" height="200" size="mini" v-tloadmore="goloading">
+                  <el-table ref="kztable" border :data="list" height="200" size="mini" v-tloadmore="goloading">
                       <el-table-column align="center" label="多项下拉" width="180">
                           <template slot-scope="scope">
                               <el-select v-model="value" placeholder="请选择"></el-select>
@@ -85,7 +86,7 @@
                     </el-table-column>
                     <el-table-column align="center" label="姓名" width="180">
                       <template slot-scope="scope">
-                        <kz-editable-input  maxlength="10" type="number"   :ref="'input'+scope.$index+'3'" @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'3') }"
+                        <kz-editable-input   type="number"   :ref="'input'+scope.$index+'3'" @end="handlerEnd" @keydown="(e)=>{ handlerKeydown(e,'input'+scope.$index+'3') }"
                           v-model="selVal1">
                           <input style="margin-top:10px " slot="btn" type="button"  value="选择"/>
                         </kz-editable-input>
@@ -116,7 +117,9 @@
                   <input id="myfile" type="button" @click="list.push({})" value="点击" />
                 </div>
         </div>
-        
+          <el-card>
+              <kz-countdown :end-time="19887766511"  end-text="00:00:00"></kz-countdown>
+          </el-card>
       </kz-frame-warp>
     </kz-frame>
 
@@ -277,8 +280,11 @@
 
         }
       },
+      updated() {
+        //console.log(222333)
+      },
       mounted() {
-        console.log(this.$refs)
+       
       },
       methods: {
         goloading(e){

@@ -9,6 +9,9 @@ import Head from '@/components/com/Head';
 import KzTabs from './components/Tabs/src/tabs.vue'
 import KzNav from './components/Tabs/src/tab-nav.vue'
 import KzTabPanel from './components/Tabs/src/tab-panel.vue'
+import KzCountDown from './components/CountDown.vue'
+
+
 import querystring from "@/lib/querystring";
 import http from "@/lib/http";
 import cookie from "@/lib/cookie";
@@ -18,7 +21,7 @@ require("@/lib/string");
 require("@/lib/date");
 
 
-let kzui = { Card, Fuzzy, EditableFuzzy, EditableInput, Frame, FrameWarp, Aside, Head, KzTabs, KzNav, KzTabPanel }
+let kzui = { Card, Fuzzy, EditableFuzzy, EditableInput, Frame, FrameWarp, Aside, Head, KzTabs, KzNav, KzTabPanel,KzCountDown }
 const install = () => {
   for (let k in kzui) {
     window.Vue.component(kzui[k].name, kzui[k]);
