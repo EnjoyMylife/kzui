@@ -30,6 +30,10 @@ export default {
     }
   },
   props: {
+    focusModes: {
+      type: String,
+      default:"focus"
+    },
     maxlength: {
       type: Number,
       default:999
@@ -68,6 +72,9 @@ export default {
       this.eidt = true;
       setTimeout(() => {
         this.$refs.sercheInput.focus();
+        if(this.focusModes=="all"){
+          this.$refs.sercheInput.select();
+        }
       }, 1);
     },
     handlerEnd() {
