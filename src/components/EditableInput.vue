@@ -54,6 +54,13 @@ export default {
     handlerFocus(e){
       this.handlerEdit();
     },
+    select(){
+      this.eidt = true;
+      setTimeout(() => {
+        this.$refs.sercheInput.focus();
+        this.$refs.sercheInput.select();
+      }, 1);
+    },
     eidtCell(){
       this.handlerEdit();
     },
