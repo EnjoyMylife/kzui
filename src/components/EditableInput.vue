@@ -69,13 +69,15 @@ export default {
       this.handlerEdit();
     },
     handlerEdit() {
-      this.eidt = true;
-      setTimeout(() => {
-        this.$refs.sercheInput.focus();
-        if(this.focusModes=="all"){
-          this.$refs.sercheInput.select();
-        }
-      }, 1);
+      if(!this.eidt){
+        this.eidt = true;
+        setTimeout(() => {
+          this.$refs.sercheInput.focus();
+          if(this.focusModes=="all"){
+            this.$refs.sercheInput.select();
+          }
+        }, 1);
+      }
     },
     handlerEnd() {
       if(this.eidt){
