@@ -5,7 +5,7 @@
         @focus="inputHandlerFocus"
         @keydown="handlerKeydown"
         @keyup="handlerKeyup"
-         placeholder="请输入字符查询" 
+         :placeholder="placeholder" 
          v-model="inputValue" 
          class="kz-fuzzy-input" 
       type="text" />
@@ -134,6 +134,10 @@ export default {
       default: function(item) {
         return true;
       }
+    },
+    placeholder: {
+      type: String,
+      default:"请输入字符查询"
     }
   },
   methods: {

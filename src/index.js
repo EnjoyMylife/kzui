@@ -16,6 +16,7 @@ import querystring from "@/lib/querystring";
 import http from "@/lib/http";
 import cookie from "@/lib/cookie";
 import object from "@/lib/object";
+import scrollIntoView from "@/lib/scroll-into-view";
 
 require("@/lib/string");
 require("@/lib/date");
@@ -31,7 +32,7 @@ const install = () => {
   
 //  console.log( window.Vue)
   window.kzPublicApi={
-    http,querystring,cookie,object
+    http,querystring,cookie,object,scrollIntoView
   }
 }
 // export default kzui;

@@ -53,7 +53,7 @@ export default {
   mounted() {},
   methods: {
     inputHandlerFocus(e){
-      this.$emit("focus", e);
+      this.$emit("focus", {e:e,el:this});
     },
     handlerFocus(e){
       this.handlerEdit();

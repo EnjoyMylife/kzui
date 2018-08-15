@@ -118,7 +118,8 @@
                 </div>
         </div>
           <el-card>
-              <kz-countdown :end-time="1988776651"  end-text="00:00:00"></kz-countdown>
+              <kz-countdown :end-time="times"  end-text="00:00:00"></kz-countdown>
+              <kz-fuzzy v-model="value" :data="serchList"></kz-fuzzy>
           </el-card>
       </kz-frame-warp>
     </kz-frame>
@@ -143,6 +144,7 @@
           }
         }
         return {
+          times:1988776651,
           loadsign:false,
           msg:"加载中。。。",
           value:"",
@@ -284,7 +286,9 @@
         //console.log(222333)
       },
       mounted() {
-       
+       setTimeout(()=>{
+         this.times=1988176651
+       },1000)
       },
       methods: {
         goloading(e){
